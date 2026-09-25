@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\AuditController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\StorefrontController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +21,7 @@ Route::get('/media/{path}', [StorefrontController::class, 'media'])->where('path
 Route::post('/catalogo/vistas', [StorefrontController::class, 'viewEvent'])->middleware('throttle:120,1')->name('products.view-event');
 Route::post('/consultas/productos/{product}', [InquiryController::class, 'product'])->middleware('throttle:30,1')->name('inquiries.product');
 Route::post('/consultas/pedido', [InquiryController::class, 'cart'])->middleware('throttle:20,1')->name('inquiries.cart');
+Route::post('/consultas/contacto', [ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
 
 Route::get('/admin/login', [AuthController::class, 'create'])->name('login');
 Route::post('/admin/login', [AuthController::class, 'store'])->middleware('throttle:5,1')->name('admin.login');
@@ -28,6 +31,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'can:admin'])->group
     Route::get('/', DashboardController::class)->name('dashboard');
     Route::get('/estadisticas', StatsController::class)->name('stats');
     Route::get('/auditoria', AuditController::class)->name('audit');
+    Route::get('/consultas', [ContactMessageController::class, 'index'])->name('messages.index');
+    Route::patch('/consultas/{message}', [ContactMessageController::class, 'update'])->name('messages.update');
+    Route::delete('/consultas/{message}', [ContactMessageController::class, 'destroy'])->name('messages.destroy');
     Route::resource('categorias', CategoryController::class)->parameters(['categorias' => 'category'])->only(['index', 'store', 'update', 'destroy'])->names('categories');
     Route::patch('/productos/{product}/estado', [ProductController::class, 'setActive'])->name('products.status');
     Route::patch('/productos/{id}/restaurar', [ProductController::class, 'restore'])->name('products.restore');

@@ -19,5 +19,6 @@ import AdminProductForm from './Pages/Admin/ProductForm';
 import AdminCategories from './Pages/Admin/Categories';
 import AdminStats from './Pages/Admin/Stats';
 import AdminAudit from './Pages/Admin/Audit';
-const pages = { Store, Catalog, Workshop, ProductDetail, 'Admin/Login': AdminLogin, 'Admin/Dashboard': AdminDashboard, 'Admin/Products': AdminProducts, 'Admin/ProductForm': AdminProductForm, 'Admin/Categories': AdminCategories, 'Admin/Stats': AdminStats, 'Admin/Audit': AdminAudit };
+import AdminMessages from './Pages/Admin/Messages';
+const pages = { Store, Catalog, Workshop, ProductDetail, 'Admin/Login': AdminLogin, 'Admin/Dashboard': AdminDashboard, 'Admin/Products': AdminProducts, 'Admin/ProductForm': AdminProductForm, 'Admin/Categories': AdminCategories, 'Admin/Stats': AdminStats, 'Admin/Audit': AdminAudit, 'Admin/Messages': AdminMessages };
 createInertiaApp({ resolve: name => pages[name], setup({ el, App, props }) { createRoot(el).render(<App {...props} />); } });

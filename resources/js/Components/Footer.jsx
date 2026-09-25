@@ -21,7 +21,7 @@ export default function Footer({ home = false }) {
      <h3>Conocé Gallo Negro</h3>
      <Link href="/catalogo">Catálogo completo</Link>
      <Link href="/taller">Nuestro taller</Link>
-     <a href={homeAnchor('contacto')}>Visitanos</a>
+     <a href={homeAnchor('contacto')}>Contactanos</a>
     </nav>
     <a className="footer-instagram-link" href="https://www.instagram.com/gallonegroba/" target="_blank" rel="noopener noreferrer" aria-label="Gallo Negro en Instagram (se abre en una pestaña nueva)">
      <Instagram size={20} strokeWidth={2} aria-hidden="true" /> Instagram

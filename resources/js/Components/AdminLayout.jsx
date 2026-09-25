@@ -1,12 +1,13 @@
 import React from 'react';
 import { Head, Link, router, usePage } from '@inertiajs/react';
-import { LayoutDashboard, Package, Tags, History, ExternalLink, LogOut, CheckCircle2, ShieldCheck, ChartNoAxesCombined } from 'lucide-react';
+import { LayoutDashboard, Package, Tags, History, ExternalLink, LogOut, CheckCircle2, ShieldCheck, ChartNoAxesCombined, Inbox } from 'lucide-react';
 import '../../css/admin.css';
 
 const links = [
  { href: '/admin', label: 'Resumen', icon: LayoutDashboard },
  { href: '/admin/productos', label: 'Productos', icon: Package },
  { href: '/admin/categorias', label: 'Categorías', icon: Tags },
+ { href: '/admin/consultas', label: 'Consultas', icon: Inbox },
  { href: '/admin/estadisticas', label: 'Estadísticas', icon: ChartNoAxesCombined },
  { href: '/admin/auditoria', label: 'Auditoría', icon: History },
 ];
@@ -14,12 +15,13 @@ const descriptions = {
  '/admin': 'Una mirada al catálogo y a la actividad de tu tienda.',
  '/admin/productos': 'Administrá las piezas que tus clientes encuentran en el catálogo.',
  '/admin/categorias': 'Organizá tus productos para que sea más fácil encontrarlos.',
+ '/admin/consultas': 'Los mensajes que dejan los clientes desde el formulario de contacto.',
  '/admin/estadisticas': 'Métricas de visitas, consultas y actividad del equipo.',
  '/admin/auditoria': 'El historial de cambios del equipo, en un solo lugar.',
 };
 
 export default function AdminLayout({ title, children, actions }) {
- const { auth, flash, errors } = usePage().props;
+ const { auth, flash, errors, unreadMessages } = usePage().props;
  const path = usePage().url.split('?')[0];
  const current = links.find(link => path === link.href || (link.href !== '/admin' && path.startsWith(`${link.href}/`)));
  const initials = (auth?.user?.name || 'GN').split(' ').slice(0, 2).map(word => word[0]).join('');
@@ -32,8 +34,8 @@ export default function AdminLayout({ title, children, actions }) {
     <img src="/images/logo.png" alt="" className="size-11 rounded-full border border-white/20" />
     <span className="font-display text-[27px] font-semibold leading-none text-[#fff8ed]">GALLO NEGRO<small className="mt-2 block font-sans text-[11px] font-normal text-[#b6beb6]">Administración del taller</small></span>
    </Link>
-   <nav aria-label="Administración" className="grid grid-cols-5 gap-1 px-3 pb-3 lg:flex lg:flex-col lg:px-4 lg:py-4">
-    {links.map(({ href, label, icon: Icon }) => <Link key={href} href={href} aria-current={current?.href === href ? 'page' : undefined} className={`admin-side-link ${current?.href === href ? 'is-current' : ''}`}><Icon size={18} aria-hidden="true" /><span>{label}</span></Link>)}
+   <nav aria-label="Administración" className="grid grid-cols-6 gap-1 px-3 pb-3 lg:flex lg:flex-col lg:px-4 lg:py-4">
+    {links.map(({ href, label, icon: Icon }) => <Link key={href} href={href} aria-current={current?.href === href ? 'page' : undefined} className={`admin-side-link ${current?.href === href ? 'is-current' : ''}`}><span className="relative"><Icon size={18} aria-hidden="true" />{href === '/admin/consultas' && unreadMessages > 0 && <span className="admin-nav-count" aria-hidden="true">{unreadMessages > 99 ? '99+' : unreadMessages}</span>}</span><span>{label}{href === '/admin/consultas' && unreadMessages > 0 && <span className="sr-only"> ({unreadMessages} sin leer)</span>}</span></Link>)}
    </nav>
    <div className="mt-auto hidden px-6 pb-7 lg:block">
     <div className="mb-5 flex gap-3 border-t border-white/15 pt-5 text-xs leading-relaxed text-[#b6beb6]"><ShieldCheck size={19} aria-hidden="true" /><p>Los cambios del equipo quedan registrados en Auditoría.</p></div>

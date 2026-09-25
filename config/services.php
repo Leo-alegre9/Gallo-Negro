@@ -29,6 +29,10 @@ return [
         'key' => env('RESEND_KEY'),
     ],
 
+    'contact' => [
+        'email' => env('CONTACT_EMAIL', 'ventas@gallonegroba.com.ar'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

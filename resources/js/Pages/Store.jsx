@@ -37,7 +37,7 @@ export default function Store({ whatsapp, products = [], featured = [] }) {
     </div>
    </section>
    <section id="taller" className="workshop"><div className="shell workshop-grid"><Reveal className="workshop-photos"><img src={img('14.jpeg')} alt="Trabajo artesanal de soldadura en el taller" loading="lazy" /><img src={img('logo.png')} alt="Logo original de Gallo Negro Blacksmith" className="workshop-logo" loading="lazy" /></Reveal><div className="workshop-copy"><span className="workshop-label"><Hammer size={19} /> Nuestro taller</span><Reveal><h2>El oficio se nota.<br />El fuego se siente.</h2></Reveal><p>Gallo Negro nació como un proyecto familiar para crear piezas con las que cocinar y compartir al aire libre. Hoy, con 8 años de experiencia, hacemos fogoneros, parrillas y trabajos de herrería a medida, cuidando cada detalle.</p><Button href="/taller" navigate variant="glass" className="mt-7">Conocé nuestra historia <ArrowUpRight size={21} /></Button><div className="workshop-sign">Gallo Negro <span>Herrería para compartir el fuego.</span></div></div></div></section>
-   <VisitUs />
+   <VisitUs products={products} />
   </main>
   <Footer home />
   <div role="status" aria-live="polite" className={notice ? 'toast visible' : 'toast'}>{notice && <><Check size={18} />{notice}<button onClick={() => { setSelected(null); setCartOpen(true); setNotice(''); }}>Ver pedido</button></>}</div>

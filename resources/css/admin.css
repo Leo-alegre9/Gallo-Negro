@@ -89,8 +89,17 @@
 .admin-gallery-placeholder { margin-top:20px; padding:28px 16px; border:1px dashed #cbd1c3; border-radius:8px; text-align:center; font-size:12px; color:#626b60; }
 @media(max-width:1100px) { .admin-photo-layout { grid-template-columns:1fr; }.admin-primary-preview { max-width:350px; } }
 .admin-product-form > .admin-form-actions { position:sticky; bottom:12px; z-index:10; background:#fff; border:1px solid #dce0d5; border-radius:10px; padding:14px 20px; box-shadow:0 8px 28px #252e2812; }
+.admin-nav-count { position:absolute; top:-7px; right:-11px; min-width:17px; height:17px; padding:0 4px; border-radius:999px; background:#c2552f; color:#fff; font-size:10px; font-weight:700; line-height:17px; text-align:center; }
+.admin-message-filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }.admin-message-filters a { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid #dce0d5; border-radius:999px; background:#fff; font-size:12px; }.admin-message-filters a span { color:#797568; font-size:11px; }.admin-message-filters a.active { border-color:#292b23; background:#292b23; color:#fff8ed; }.admin-message-filters a.active span { color:#c9c3b3; }
+.admin-message-list { display:grid; gap:14px; }
+.admin-message { display:grid; gap:14px; padding:22px 24px; border:1px solid #e0e2d9; border-radius:10px; background:#fff; }.admin-message.is-unread { border-left:4px solid #c2552f; }
+.admin-message-header { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 20px; }.admin-message-header h2 { font:600 20px/1.2 var(--font-display); }
+.admin-message-contact { display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:6px; font-size:12px; color:#626b60; }.admin-message-contact a { display:inline-flex; align-items:center; gap:5px; text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+.admin-message-meta { display:flex; align-items:flex-start; gap:10px; font-size:11px; color:#797568; white-space:nowrap; }
+.admin-message-topic { font-size:12px; color:#626b60; }.admin-message-topic strong { color:#35402f; font-weight:600; }.admin-message-topic a { color:#984829; text-decoration:underline; text-underline-offset:3px; }
+.admin-message-body { max-width:75ch; font-size:13px; line-height:1.7; white-space:pre-line; overflow-wrap:anywhere; }
 @media(max-width:1023px) { .admin-side-link { flex-direction:column; justify-content:center; gap:7px; padding:11px 5px; } }
-@media(max-width:639px) { .admin-form-section,.admin-panel { padding:20px; }.admin-side-link { padding:11px 12px; gap:7px; font-size:12px; }.admin-side-link svg { width:16px; }.admin-product-form > .admin-form-actions { bottom:8px; padding:12px; }.admin-category-list > div { flex-wrap:wrap; } }
+@media(max-width:639px) { .admin-form-section,.admin-panel { padding:20px; }.admin-side-link { padding:11px 12px; gap:7px; font-size:12px; }.admin-side-link svg { width:16px; }.admin-product-form > .admin-form-actions { bottom:8px; padding:12px; }.admin-category-list > div { flex-wrap:wrap; }.admin-message { padding:18px; } }
 @media(max-width:1000px) { .admin-dashboard-grid,.admin-categories-layout { grid-template-columns:1fr; gap:36px; } }
 
 /* Estadísticas */

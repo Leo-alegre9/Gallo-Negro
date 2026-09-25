@@ -90,7 +90,7 @@ export default function Navbar({ count, onOpenCart, whatsapp, home = false }) {
     <nav id="primary-navigation" aria-label="Principal" className="navbar-links">
      <Link className="navbar-link" href="/catalogo" aria-current={catalogActive ? 'page' : undefined} onClick={close}>Catálogo</Link>
      <Link className="navbar-link" href="/taller" aria-current={workshopActive ? 'page' : undefined} onClick={close}>Nuestro taller</Link>
-     <a className="navbar-link" href={`${home ? '' : '/'}#contacto`} aria-current={visitActive ? 'location' : undefined} onClick={close}>Visitanos</a>
+     <a className="navbar-link" href={`${home ? '' : '/'}#contacto`} aria-current={visitActive ? 'location' : undefined} onClick={close}>Contactanos</a>
      <div className="navbar-more">
       <button ref={moreTrigger} className="navbar-link" type="button" aria-current={moreActive ? 'location' : undefined} aria-expanded={panel === 'more'} aria-controls="navbar-more-panel" onClick={() => setPanel(panel === 'more' ? null : 'more')}>Más <ChevronDown size={16} className={panel === 'more' ? 'is-open' : ''} aria-hidden="true" /></button>
       {panel === 'more' && <div id="navbar-more-panel" className="navbar-popover navbar-more-panel">
@@ -123,7 +123,7 @@ export default function Navbar({ count, onOpenCart, whatsapp, home = false }) {
     <nav aria-label="Principal" className="navbar-mobile-links">
      <Link href="/catalogo" aria-current={catalogActive ? 'page' : undefined} onClick={close}>Catálogo</Link>
      <Link href="/taller" aria-current={workshopActive ? 'page' : undefined} onClick={close}>Nuestro taller</Link>
-     <a href={`${home ? '' : '/'}#contacto`} aria-current={visitActive ? 'location' : undefined} onClick={close}>Visitanos</a>
+     <a href={`${home ? '' : '/'}#contacto`} aria-current={visitActive ? 'location' : undefined} onClick={close}>Contactanos</a>
      {!home && <Link href="/" onClick={close}>Inicio</Link>}
      <a href={`${home ? '' : '/'}#como-comprar`} aria-current={moreActive ? 'location' : undefined} onClick={close}>Cómo comprar</a>
     </nav>

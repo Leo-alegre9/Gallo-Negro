@@ -13,10 +13,10 @@ test('navbar indicator follows the current page and section', async ({ page }) =
  await expect(nav.getByRole('link', { name: 'Nuestro taller' })).toHaveCSS('text-decoration-line', 'underline');
  await expect(nav.getByRole('link', { name: 'Catálogo' })).not.toHaveAttribute('aria-current');
 
- await nav.getByRole('link', { name: 'Visitanos' }).click();
+ await nav.getByRole('link', { name: 'Contactanos' }).click();
  await expect(page).toHaveURL(/\/#contacto$/);
- await expect(nav.getByRole('link', { name: 'Visitanos' })).toHaveAttribute('aria-current', 'location');
- await expect(nav.getByRole('link', { name: 'Visitanos' })).toHaveCSS('text-decoration-line', 'underline');
+ await expect(nav.getByRole('link', { name: 'Contactanos' })).toHaveAttribute('aria-current', 'location');
+ await expect(nav.getByRole('link', { name: 'Contactanos' })).toHaveCSS('text-decoration-line', 'underline');
  await expect(nav.getByRole('link', { name: 'Catálogo' })).not.toHaveAttribute('aria-current');
 
  await page.goto('/#como-comprar');
