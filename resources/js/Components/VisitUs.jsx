@@ -1,12 +1,10 @@
 import React from 'react';
-import { ArrowUpRight, Clock3, Mail, MapPin, Phone } from 'lucide-react';
+import { Clock3, Mail, MapPin, Phone } from 'lucide-react';
 import '../../css/visit-us.css';
 
 const phone = '1135879396';
 const email = 'ventas@gallonegroba.com.ar';
 const address = 'Villa Udaondo 4560, Ituzaingó, Provincia de Buenos Aires';
-const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
-const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
 export default function VisitUs() {
  return (
@@ -35,19 +33,6 @@ export default function VisitUs() {
        <div><h3>Correo</h3><a href={`mailto:${email}`}>{email}</a></div>
       </div>
      </div>
-    </div>
-
-    <div className="visit-us-map">
-     <iframe
-      title="Mapa para llegar al taller de Gallo Negro en Villa Udaondo"
-      src={mapUrl}
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      allowFullScreen
-     />
-     <a href={directionsUrl} target="_blank" rel="noopener noreferrer">
-      Cómo llegar <ArrowUpRight size={17} aria-hidden="true" />
-     </a>
     </div>
    </div>
   </section>
