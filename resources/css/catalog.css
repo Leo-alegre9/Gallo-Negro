@@ -1,0 +1,24 @@
+/* The catalog page continues the same dark, video-toned surface as the homepage spotlight. */
+.catalog-surface { position: relative; background: linear-gradient(180deg,#30332d 0%,#100f0c 28%,#050302 58%); }
+.catalog-surface .catalog-page { padding-top: 56px; padding-bottom: 90px; }
+.catalog-surface .demo-note { color: #9c9686; }
+
+.catalog-surface .catalog-toolbar { flex-wrap: wrap; }
+.catalog-surface .filters button { border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.04); color: #e7e2d4; }
+.catalog-surface .filters button:hover { background: rgba(255,255,255,.09); }
+.catalog-surface .filters button.active { color: #fff8ed; }
+.catalog-surface .filter-highlight { background: #984829; }
+.catalog-surface .search { border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.04); color: #e7e2d4; }
+.catalog-surface .search input { color: #fff; }
+.catalog-surface .search input::placeholder { color: rgba(255,255,255,.4); }
+.catalog-surface .catalog-meta { color: #beb8a8; }
+.catalog-surface .catalog-meta select { color: #fff; }
+.catalog-surface .catalog-meta select option { color: #292b23; }
+
+.catalog-surface .empty-state { color: #fff; }
+.catalog-surface .empty-state svg { color: #ffb992; }
+.catalog-surface .empty-state p { color: #beb8a8; }
+
+@media(max-width:760px) {
+ .catalog-surface .catalog-page { padding-top: 40px; }
+}

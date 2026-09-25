@@ -1,0 +1,6 @@
+Generated with the built-in image_gen tool. Input: public/images/7.jpeg.
+Output: public/images/hero-landscape-v2.png (1672 x 941 pixels).
+This is an AI-enhanced landscape adaptation, not an unmodified product photograph. Originals are preserved. Requested 3840x2160, but the tool returned 1672x941; no claim of native 4K resolution is made.
+
+Prompt:
+Edit target: attached Gallo Negro grill photograph. Create a high resolution 3840x2160 landscape website hero adaptation, outpaint the scene horizontally and improve photographic clarity. Preserve faithfully the exact grill geometry, steel texture, welds, metal bars, recognizable badge and craftsmanship, do not redesign or add product features. Keep warm natural raking sunlight, wood plank wall, logs and gravel. Compose the original grill on the RIGHT half with the full recognizable body in view, extend dark natural wood and shadow across the LEFT half as quiet space for website headings. Sharp realistic detailed metal and wood, no oversharpening or artificial plastic texture. No added text, no graphics, no watermark. This is an enhanced photographic adaptation of the original, not a new product design. Return landscape image and save file for use in website.
