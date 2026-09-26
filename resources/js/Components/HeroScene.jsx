@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from '@inertiajs/react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import SlideInButton from './SlideInButton';
 import { HeroTitle, ease } from './Effects';
 import ForgeIntro, { shouldPlayForgeIntro } from './ForgeIntro';
 
@@ -71,9 +70,7 @@ export default function HeroScene() {
       Fogoneros y parrillas hechos a mano en Ituzaingó.
      </motion.p>
      <motion.div className="hero-actions-row" {...enter(0.5)}>
-      <Link href="/catalogo" className="hero-cta hero-cta-primary">
-       Ver catálogo <span className="hero-cta-icon" aria-hidden="true"><ArrowRight size={17} /></span>
-      </Link>
+      <SlideInButton>Ver catálogo</SlideInButton>
      </motion.div>
 
     </div>

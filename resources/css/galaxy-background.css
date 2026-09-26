@@ -1,0 +1,8 @@
+.galaxy-sections { position:relative; isolation:isolate; background:#050302; }
+.galaxy-background { position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none; background:#050302; }
+.galaxy-background canvas { display:block; width:100%; height:100%; }
+.galaxy-sections :is(.catalog-spotlight,.workshop,.visit-us) { background:transparent; }
+.galaxy-sections .visit-us::before { display:none; }
+.catalog-surface:has(> .galaxy-background) { isolation:isolate; }
+[data-theme="light"] :is(.galaxy-sections,.galaxy-background) { background:var(--cream); }
+[data-theme="light"] .galaxy-sections :is(.catalog-spotlight,.workshop,.visit-us) { background:transparent; }

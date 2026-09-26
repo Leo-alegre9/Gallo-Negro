@@ -5,11 +5,12 @@ import { Reveal } from '../Components/Effects';
 import HeroScene from '../Components/HeroScene';
 import ProductModal from '../Components/ProductModal';
 import FeaturedProductViewer from '../Components/FeaturedProductViewer';
-import FireBackground from '../Components/FireBackground';
+import GalaxyBackground from '../Components/GalaxyBackground';
 import CartDrawer from '../Components/CartDrawer';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import Button from '../Components/Button';
+import SlideInButton from '../Components/SlideInButton';
 import HowToBuy from '../Components/HowToBuy';
 import VisitUs from '../Components/VisitUs';
 import { ArrowUpRight, Flame, Hammer, Check } from 'lucide-react';
@@ -29,17 +30,19 @@ export default function Store({ whatsapp, products = [], featured = [] }) {
   <main id="contenido"><div className="relative">
   <Navbar whatsapp={whatsapp} count={count} onOpenCart={() => setCartOpen(true)} home />
    <HeroScene /></div>
+   <div className="galaxy-sections">
+    <GalaxyBackground />
    <section id="catalogo" className="catalog-spotlight">
-    <FireBackground />
     <div className="shell">
      <Reveal className="section-heading catalog-spotlight-heading"><div><p className="section-intro catalog-spotlight-eyebrow"><Flame size={13} aria-hidden="true" /> Los más elegidos</p><h2>Piezas con carácter.</h2></div><p>Para el asado del domingo.<br />Para las noches que se alargan.</p></Reveal>
      <div className="featured-viewer-grid">{featured.map((p, i) => <FeaturedProductViewer key={p.id} product={p} money={money} index={i} onView={product => { setSelected(product); recordProductView(product.id); }} onAdd={add} />)}</div>
-     <div className="catalog-spotlight-cta"><Button href="/catalogo" navigate size="large">Ver catálogo completo <ArrowUpRight size={19} aria-hidden="true" /></Button></div>
+     <div className="catalog-spotlight-cta"><SlideInButton>Ver catálogo completo</SlideInButton></div>
      <HowToBuy count={count} onOpenCart={() => setCartOpen(true)} />
     </div>
    </section>
    <section id="taller" className="workshop"><div className="shell workshop-grid"><Reveal className="workshop-photos"><img src={img('14.jpeg')} alt="Trabajo artesanal de soldadura en el taller" loading="lazy" /><img src={img('logo.png')} alt="Logo original de Gallo Negro Blacksmith" className="workshop-logo" loading="lazy" /></Reveal><div className="workshop-copy"><span className="workshop-label"><Hammer size={19} /> Nuestro taller</span><Reveal><h2>El oficio se nota.<br />El fuego se siente.</h2></Reveal><p>Gallo Negro nació como un proyecto familiar para crear piezas con las que cocinar y compartir al aire libre. Hoy, con 8 años de experiencia, hacemos fogoneros, parrillas y trabajos de herrería a medida, cuidando cada detalle.</p><Button href="/taller" navigate variant="glass" className="mt-7">Conocé nuestra historia <ArrowUpRight size={21} /></Button><div className="workshop-sign">Gallo Negro <span>Herrería para compartir el fuego.</span></div></div></div></section>
    <VisitUs products={products} />
+   </div>
   </main>
   <Footer home />
   <div role="status" aria-live="polite" className={notice ? 'toast visible' : 'toast'}>{notice && <><Check size={18} />{notice}<button onClick={() => { setSelected(null); setCartOpen(true); setNotice(''); }}>Ver pedido</button></>}</div>

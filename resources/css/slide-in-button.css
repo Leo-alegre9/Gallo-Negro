@@ -1,0 +1,12 @@
+/* Adapted from the supplied Slide In Button: bottom fill, shifting label, incoming arrow. */
+.slide-in-button { --slide-bg:#fff8ed; --slide-ink:#30271f; --slide-hover:#984829; position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center; min-height:54px; padding:16px 32px; overflow:hidden; border:1px solid #d9cbb7; border-radius:999px; background:var(--slide-bg); color:var(--slide-ink); font:600 14px/1.4 var(--font-sans); text-decoration:none; box-shadow:0 6px 20px -8px #30271f40; transition:color .3s,border-color .3s,transform .2s; }
+.slide-in-button-fill { position:absolute; z-index:-1; bottom:-8px; left:50%; width:8px; height:8px; border-radius:50%; background:var(--slide-hover); transform:translateX(-50%) scale(1); transition:transform .5s cubic-bezier(.22,1,.36,1); pointer-events:none; }
+.slide-in-button-label { position:relative; display:block; white-space:nowrap; transition:transform .5s cubic-bezier(.22,1,.36,1); }
+.slide-in-button-arrow { position:absolute; right:12px; top:50%; transform:translate(40px,-50%); transition:transform .5s cubic-bezier(.22,1,.36,1); }
+.slide-in-button:is(:hover,:focus-visible) { color:#fff8ed; border-color:var(--slide-hover); }
+.slide-in-button:is(:hover,:focus-visible) .slide-in-button-fill { transform:translateX(-50%) scale(80); }
+.slide-in-button:is(:hover,:focus-visible) .slide-in-button-label { transform:translateX(-14px); }
+.slide-in-button:is(:hover,:focus-visible) .slide-in-button-arrow { transform:translate(0,-50%); }
+.slide-in-button:focus-visible { outline:3px solid #984829; outline-offset:5px; }
+.slide-in-button:active { transform:scale(.98); }
+@media(prefers-reduced-motion:reduce) { .slide-in-button,.slide-in-button-fill,.slide-in-button-label,.slide-in-button-arrow { transition:none; } }

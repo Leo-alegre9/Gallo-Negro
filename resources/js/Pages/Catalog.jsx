@@ -4,7 +4,7 @@ import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'motion/
 import { Reveal, ease } from '../Components/Effects';
 import ProductModal from '../Components/ProductModal';
 import ProductCard from '../Components/ProductCard';
-import FireBackground from '../Components/FireBackground';
+import GalaxyBackground from '../Components/GalaxyBackground';
 import CartDrawer from '../Components/CartDrawer';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
@@ -41,7 +41,7 @@ export default function Catalog({ whatsapp, products = [], categories = [] }) {
   <Head title="Gallo Negro — Catálogo completo" />
   <a className="skip-link" href="#contenido">Ir al contenido</a>
   <div className="catalog-surface">
-   <FireBackground />
+   <GalaxyBackground />
    <Navbar whatsapp={whatsapp} count={count} onOpenCart={() => setCartOpen(true)} />
    <main id="contenido">
     <section className="catalog-page shell section-space">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es-AR" data-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
     <meta property="og:image" content="{{ $productMeta['absoluteImageUrl'] }}">
     <meta property="og:url" content="{{ $productMeta['url'] }}">
     @endisset
-    <meta name="theme-color" content="#f4f0e7">
+    <meta name="theme-color" content="#050302">
     <meta name="description" content="Gallo Negro. Fogoneros, parrillas y herrería para disfrutar del fuego. Explorá el catálogo y armá tu pedido.">
     <link rel="icon" type="image/png" href="/images/logo.png">
     <link rel="apple-touch-icon" href="/images/logo.png">
