@@ -10,5 +10,5 @@
 .whatsapp-unavailable h2 { font-size:36px; }
 .whatsapp-unavailable p { font-size:14px; line-height:1.8; margin:20px 0 24px; }
 @media(max-width:1023px) { .whatsapp-navbar { width:44px; padding:0; background:transparent; color:#4be18c; }.whatsapp-navbar span { display:none; }.whatsapp-navbar:hover { background:#25d3661a; } }
-@media(max-width:760px) { .whatsapp-floating { width:52px; height:52px; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); }.toast { bottom:84px; }.footer-bottom { padding-bottom:84px; } }
+@media(max-width:760px) { .whatsapp-floating { width:52px; height:52px; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); }.toast { bottom:84px; } }
 @media(prefers-reduced-motion:reduce) { .whatsapp-access { transition:none; }.whatsapp-floating:hover { transform:none; } }

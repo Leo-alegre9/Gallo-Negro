@@ -2,10 +2,8 @@ import React from 'react';
 import { useForm } from '@inertiajs/react';
 import { CheckCircle2, Clock3, Mail, MapPin, Phone, Send } from 'lucide-react';
 import '../../css/visit-us.css';
+import { contact } from '../data/contact';
 
-const phone = '1135879396';
-const email = 'ventas@gallonegroba.com.ar';
-const address = 'Villa Udaondo 4560, Ituzaingó, Provincia de Buenos Aires';
 const topics = [
  ['producto', 'Consulta por un producto'],
  ['medida', 'Trabajo a medida'],
@@ -92,19 +90,19 @@ export default function VisitUs({ products = [] }) {
      <div className="visit-us-details">
       <div className="visit-us-detail">
        <MapPin size={19} aria-hidden="true" />
-       <div><h3>Dirección</h3><p>{address}</p></div>
+       <div><h3>Dirección</h3><p>{contact.address}</p></div>
       </div>
       <div className="visit-us-detail">
        <Clock3 size={19} aria-hidden="true" />
-       <div><h3>Atención al cliente</h3><p>Lunes a viernes, de 8 a 16 h</p></div>
+       <div><h3>Atención al cliente</h3><p>{contact.hours}</p></div>
       </div>
       <div className="visit-us-detail">
        <Phone size={19} aria-hidden="true" />
-       <div><h3>Teléfono</h3><a href={`tel:+54${phone}`}>11 3587-9396</a></div>
+       <div><h3>Teléfono</h3><a href={`tel:+54${contact.phone}`}>{contact.phoneLabel}</a></div>
       </div>
       <div className="visit-us-detail">
        <Mail size={19} aria-hidden="true" />
-       <div><h3>Correo</h3><a href={`mailto:${email}`}>{email}</a></div>
+       <div><h3>Correo</h3><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
       </div>
      </div>
     </div>
