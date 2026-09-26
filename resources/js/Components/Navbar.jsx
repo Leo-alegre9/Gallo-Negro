@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, router, usePage } from '@inertiajs/react';
-import { ShoppingBag, Search, ChevronDown, Menu, X } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X } from 'lucide-react';
 import Button from './Button';
 import WhatsAppButton from './WhatsAppButton';
 import '../../css/navbar.css';
@@ -17,7 +17,7 @@ export default function Navbar({ count, onOpenCart, whatsapp, home = false }) {
  const header = useRef(null);
  const searchInput = useRef(null);
  const searchTrigger = useRef(null);
- const moreTrigger = useRef(null);
+
  const menuTrigger = useRef(null);
  const catalogActive = pathname === '/catalogo' || pathname.startsWith('/productos/') || (home && hash === '#catalogo');
  const workshopActive = pathname === '/taller' || (home && hash === '#taller');
@@ -40,10 +40,10 @@ export default function Navbar({ count, onOpenCart, whatsapp, home = false }) {
  useEffect(() => {
   const element = header.current;
   const update = () => {
-   const measured = Math.ceil(element.getBoundingClientRect().height);
+   const measured = Math.ceil(element.getBoundingClientRect().bottom);
    document.documentElement.style.setProperty('--navigation-offset', `${measured + 28}px`);
    // Reserve the expanded height so shrinking the fixed header never moves the page.
-   if (!scrolled) setHeight(measured);
+   if (!scrolled) setHeight(Math.ceil(element.querySelector('.navbar-layout').getBoundingClientRect().bottom) + 20);
   };
   const observer = new ResizeObserver(update);
   observer.observe(element); update();
@@ -54,7 +54,7 @@ export default function Navbar({ count, onOpenCart, whatsapp, home = false }) {
   if (panel === 'search') searchInput.current?.focus();
   const dismiss = event => {
    if (event.type === 'keydown' && event.key === 'Escape') {
-    const returnTo = mobileOpen ? menuTrigger : panel === 'search' ? searchTrigger : moreTrigger;
+    const returnTo = mobileOpen ? menuTrigger : searchTrigger;
     setPanel(null); setMobileOpen(false);
     returnTo.current?.focus();
    }
@@ -85,25 +85,17 @@ export default function Navbar({ count, onOpenCart, whatsapp, home = false }) {
    <div className="shell navbar-layout">
     <Link href="/" aria-label="Gallo Negro, inicio" className="navbar-logo" onClick={close}>
      <img src="/images/logo.png" alt="" width="52" height="52" />
-     <span>GALLO NEGRO<small>Fogoneros & herrería</small></span>
+     <span>GALLO NEGRO</span>
     </Link>
     <nav id="primary-navigation" aria-label="Principal" className="navbar-links">
      <Link className="navbar-link" href="/catalogo" aria-current={catalogActive ? 'page' : undefined} onClick={close}>Catálogo</Link>
      <Link className="navbar-link" href="/taller" aria-current={workshopActive ? 'page' : undefined} onClick={close}>Nuestro taller</Link>
      <a className="navbar-link" href={`${home ? '' : '/'}#contacto`} aria-current={visitActive ? 'location' : undefined} onClick={close}>Contactanos</a>
-     <div className="navbar-more">
-      <button ref={moreTrigger} className="navbar-link" type="button" aria-current={moreActive ? 'location' : undefined} aria-expanded={panel === 'more'} aria-controls="navbar-more-panel" onClick={() => setPanel(panel === 'more' ? null : 'more')}>Más <ChevronDown size={16} className={panel === 'more' ? 'is-open' : ''} aria-hidden="true" /></button>
-      {panel === 'more' && <div id="navbar-more-panel" className="navbar-popover navbar-more-panel">
-       <Link href="/" onClick={close}>Inicio</Link>
-       <a href={`${home ? '' : '/'}#como-comprar`} aria-current={moreActive ? 'location' : undefined} onClick={close}>Cómo comprar</a>
-       <button type="button" onClick={openCart}>Consultar mi pedido</button>
-      </div>}
-     </div>
+     <a className="navbar-link" href={`${home ? '' : '/'}#como-comprar`} aria-current={moreActive ? 'location' : undefined} onClick={close}>Cómo comprar</a>
     </nav>
     <div className="navbar-actions">
      <Button ref={searchTrigger} variant="glass" size="icon" className="navbar-search-trigger" aria-label="Buscar en el catálogo" aria-expanded={panel === 'search'} aria-controls="navbar-search-panel" onClick={() => setPanel(panel === 'search' ? null : 'search')}><Search size={19} aria-hidden="true" /></Button>
      <Button variant="glass" size="compact" className="navbar-order" onClick={openCart} aria-label={`Abrir pedido, ${count} productos`}><ShoppingBag size={18} aria-hidden="true" /><span className="navbar-order-label">Tu pedido</span><span className="navbar-count">{count}</span></Button>
-     <WhatsAppButton number={whatsapp} onOpenCart={openCart} />
      <Button ref={menuTrigger} variant="glass" size="icon" className="navbar-menu-trigger" aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={mobileOpen} aria-controls="navbar-mobile-panel" onClick={() => { setPanel(null); setMobileOpen(!mobileOpen); }}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</Button>
     </div>
     {panel === 'search' && <div id="navbar-search-panel" className="navbar-popover navbar-search-panel">

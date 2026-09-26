@@ -8,9 +8,11 @@ export function Reveal({ children, className, ...props }) {
  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: reduced ? 0 : 0.65, ease }} {...props}>{children}</motion.div>;
 }
 
-export function HeroTitle({ className = '' }) {
+// `play` permite esperar a que termine la cortina de entrada antes de mostrar el título.
+export function HeroTitle({ className = '', play = true }) {
  const reduced = useReducedMotion();
- return <h1 className={className} aria-label="Donde hay fuego, hay encuentro.">{['Donde hay fuego,', 'hay encuentro.'].map((line, i) => <span className="title-mask" aria-hidden="true" key={line}><motion.span initial={reduced ? false : { y: '110%', rotate: 3 }} animate={{ y: 0, rotate: 0 }} transition={{ duration: 0.95, delay: 0.12 + i * 0.15, ease }}>{line}</motion.span></span>)}</h1>;
+ const lines = ['Donde hay fuego,', 'hay encuentro.'];
+ return <h1 className={className} aria-label="Donde hay fuego, hay encuentro.">{lines.map((line, i) => <span className="title-mask" aria-hidden="true" key={i}><motion.span initial={reduced ? false : { y: '110%', rotate: 3 }} animate={play ? { y: 0, rotate: 0 } : undefined} transition={{ duration: 0.95, delay: 0.12 + i * 0.15, ease }}>{line}</motion.span></span>)}</h1>;
 }
 
 export function CartCount({ count }) {

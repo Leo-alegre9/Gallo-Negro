@@ -4,7 +4,8 @@ import { MotionConfig } from 'motion/react';
 import { Reveal } from '../Components/Effects';
 import HeroScene from '../Components/HeroScene';
 import ProductModal from '../Components/ProductModal';
-import ProductCard from '../Components/ProductCard';
+import FeaturedProductViewer from '../Components/FeaturedProductViewer';
+import FireBackground from '../Components/FireBackground';
 import CartDrawer from '../Components/CartDrawer';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
@@ -29,9 +30,10 @@ export default function Store({ whatsapp, products = [], featured = [] }) {
   <Navbar whatsapp={whatsapp} count={count} onOpenCart={() => setCartOpen(true)} home />
    <HeroScene /></div>
    <section id="catalogo" className="catalog-spotlight">
+    <FireBackground />
     <div className="shell">
      <Reveal className="section-heading catalog-spotlight-heading"><div><p className="section-intro catalog-spotlight-eyebrow"><Flame size={13} aria-hidden="true" /> Los más elegidos</p><h2>Piezas con carácter.</h2></div><p>Para el asado del domingo.<br />Para las noches que se alargan.</p></Reveal>
-     <div className="catalog-spotlight-grid">{featured.map((p, i) => <ProductCard key={p.id} product={p} money={money} index={i} onView={product => { setSelected(product); recordProductView(product.id); }} onAdd={add} />)}</div>
+     <div className="featured-viewer-grid">{featured.map((p, i) => <FeaturedProductViewer key={p.id} product={p} money={money} index={i} onView={product => { setSelected(product); recordProductView(product.id); }} onAdd={add} />)}</div>
      <div className="catalog-spotlight-cta"><Button href="/catalogo" navigate size="large">Ver catálogo completo <ArrowUpRight size={19} aria-hidden="true" /></Button></div>
      <HowToBuy count={count} onOpenCart={() => setCartOpen(true)} />
     </div>

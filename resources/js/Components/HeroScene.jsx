@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Link } from '@inertiajs/react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, ChevronDown, Flame } from 'lucide-react';
-import { HeroTitle } from './Effects';
-import Button from './Button';
+import { ArrowRight } from 'lucide-react';
+import { HeroTitle, ease } from './Effects';
+import ForgeIntro, { shouldPlayForgeIntro } from './ForgeIntro';
 
 export default function HeroScene() {
  const reduced = useReducedMotion();
@@ -11,6 +12,12 @@ export default function HeroScene() {
  const videoRef = useRef(null);
  const [failed, setFailed] = useState(false);
  const [visible, setVisible] = useState(true);
+ const [introPlaying, setIntroPlaying] = useState(shouldPlayForgeIntro);
+ const [introRevealed, setIntroRevealed] = useState(() => !introPlaying);
+ const revealHero = useCallback(() => setIntroRevealed(true), []);
+ const finishIntro = useCallback(() => { setIntroRevealed(true); setIntroPlaying(false); }, []);
+ // El contenido entra cuando las particulas revelan el hero.
+ const enter = delay => reduced ? {} : { initial: { opacity: 0, y: 18 }, animate: introRevealed ? { opacity: 1, y: 0 } : undefined, transition: { duration: 0.7, delay: 0.2 + delay, ease } };
  useEffect(() => {
   const update = () => setVisible(!document.hidden);
   update(); document.addEventListener('visibilitychange', update);
@@ -26,6 +33,8 @@ export default function HeroScene() {
  }, [reduced, inView, visible, failed]);
 
  return (
+  <>
+  {introPlaying && <ForgeIntro onReveal={revealHero} onDone={finishIntro} />}
   <section
    ref={ref}
    className="hero-scene relative isolate flex h-[100svh] min-h-[600px] w-full items-end overflow-hidden bg-iron text-white"
@@ -57,34 +66,21 @@ export default function HeroScene() {
 
    <div className="shell relative z-10 w-full pb-24 pt-16 sm:pb-28 sm:pt-20 lg:pb-32">
     <div className="max-w-xl">
-     <span className="mb-4 inline-flex items-center gap-2 text-xs font-medium text-[#ffb992] sm:mb-5">
-      <Flame size={16} /> Encendé el encuentro.
-     </span>
-     <HeroTitle className="text-[clamp(2.6rem,8.5vw,4.6rem)] leading-[0.98] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] sm:text-[clamp(3rem,6vw,4.6rem)]" />
-     <p className="mt-4 max-w-sm text-[13px] leading-relaxed text-white/85 sm:mt-5 sm:max-w-md sm:text-[15px] sm:leading-loose">
-      Fogoneros y parrillas con carácter.<br className="hidden sm:block" /> Hechos para compartir buenos momentos.
-     </p>
-     <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
-      <Button href="/catalogo" navigate>Ver catálogo <ArrowUpRight size={18} aria-hidden="true" /></Button>
-      <Button href="/taller" navigate variant="glass">Conocé el taller <ArrowUpRight size={18} aria-hidden="true" /></Button>
-     </div>
+     <HeroTitle play={introRevealed} className="text-[clamp(2.6rem,8.5vw,4.6rem)] leading-[0.98] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] sm:text-[clamp(3rem,6vw,4.6rem)]" />
+     <motion.p className="hero-lead" {...enter(0.35)}>
+      Fogoneros y parrillas hechos a mano en Ituzaingó.
+     </motion.p>
+     <motion.div className="hero-actions-row" {...enter(0.5)}>
+      <Link href="/catalogo" className="hero-cta hero-cta-primary">
+       Ver catálogo <span className="hero-cta-icon" aria-hidden="true"><ArrowRight size={17} /></span>
+      </Link>
+     </motion.div>
+
     </div>
    </div>
 
-   <a
-    href="#catalogo"
-    aria-label="Ver el catálogo, desplazate hacia abajo"
-    className="group absolute inset-x-0 bottom-6 z-10 mx-auto flex w-fit flex-col items-center gap-2.5 text-white/75 transition-colors hover:text-white sm:bottom-9"
-   >
-    <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">Descubrí el catálogo</span>
-    <motion.span
-     animate={reduced ? undefined : { y: [0, 9, 0] }}
-     transition={{ duration: 1.7, repeat: Infinity, ease: 'easeInOut' }}
-     className="flex size-10 items-center justify-center rounded-full border border-white/35 bg-white/10 backdrop-blur-md transition-colors duration-200 group-hover:border-white/70 group-hover:bg-white/20"
-    >
-     <ChevronDown size={20} aria-hidden="true" />
-    </motion.span>
-   </a>
+
   </section>
+  </>
  );
 }
