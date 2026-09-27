@@ -1,0 +1,20 @@
+.how-to-buy { position:relative; display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(32px,6vw,88px); margin-top:90px; padding:clamp(28px,4vw,54px); border:1px solid #c8794533; border-radius:20px; background:linear-gradient(125deg,#352014a6,#17110ddd 65%); color:#fff8ed; scroll-margin-top:var(--navigation-offset,130px); }
+.how-to-buy .how-to-buy-heading { position:sticky; top:var(--navigation-offset,130px); align-self:start; display:flex; flex-direction:column; align-items:flex-start; gap:22px; }
+.how-to-buy-heading h2 { font-size:clamp(42px,5vw,66px); }
+.how-to-buy-heading > p { max-width:30ch; color:#c6b6a6; font-size:14px; line-height:1.8; }
+.how-to-buy-mark { display:grid; place-items:center; width:56px; height:56px; border:1px solid #c8794555; border-radius:16px; background:#c8794512; color:#ffb992; }
+.how-to-buy-scroll { display:flex; align-items:center; gap:9px; margin-top:8px; color:#b5a08d; font-size:11px; }
+.how-to-buy .how-to-buy-steps { position:relative; display:flex; flex-direction:column; gap:0; margin:0; padding:0; list-style:none; }
+.how-to-buy-steps::before { content:''; position:absolute; top:20px; bottom:40px; left:21px; width:1px; background:#c8794538; }
+.how-to-buy .how-to-buy-steps li { position:relative; display:grid; grid-template-columns:44px minmax(0,1fr); gap:22px; min-height:270px; padding:0 0 52px; border:0; }
+.how-to-buy .how-to-buy-steps li:last-child { min-height:0; padding-bottom:0; }
+.how-to-buy .how-to-buy-number { position:relative; display:grid; place-items:center; width:44px; height:44px; border:1px solid #c8794544; border-radius:50%; background:#21160f; font-size:21px; color:#b59980; transition:color .35s,background .35s,border-color .35s,box-shadow .35s; }
+.how-to-buy .is-active .how-to-buy-number { background:#984829; border-color:#d98c59; color:#fff8ed; box-shadow:0 0 0 6px #c8794510; }
+.how-to-buy-step-icon { margin:7px 0 18px; color:#b59980; transition:color .35s,transform .35s; }
+.is-active .how-to-buy-step-icon { color:#ffb992; transform:translateY(-3px); }
+.how-to-buy .how-to-buy-steps h3 { font-size:clamp(29px,3vw,37px); line-height:1.1; }
+.how-to-buy .how-to-buy-steps p { margin-top:16px; max-width:46ch; font-size:14px; line-height:1.85; color:#c6b6a6; }
+.how-to-buy .how-to-buy-steps .how-to-buy-detail { padding-left:14px; border-left:2px solid #984829; color:#edc7a8; font-size:12px; }
+.catalog-spotlight:has(.how-to-buy) { overflow:clip; }
+@media(max-width:760px) { .how-to-buy { grid-template-columns:1fr; gap:38px; padding:28px 22px; margin-top:60px; border-radius:16px; } .how-to-buy .how-to-buy-heading { position:static; gap:18px; } .how-to-buy-heading > p { max-width:46ch; } .how-to-buy .how-to-buy-steps li { min-height:280px; gap:16px; padding-bottom:40px; } .how-to-buy .how-to-buy-button { width:auto; } }
+@media(prefers-reduced-motion:reduce) { .how-to-buy-number,.how-to-buy-step-icon { transition:none !important; } .is-active .how-to-buy-step-icon { transform:none; } }
